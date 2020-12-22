@@ -60,11 +60,11 @@ class TestParsingMethods(unittest.TestCase):
         self.assertEqual(success, True)
 
     def test_parsing_int_small(self):
-        success, result = up.try_parse_arg(1e-35)
+        success, result = up.try_parse_arg(int(up.min_value))
         self.assertEqual(success, True)
 
     def test_parsing_int_big(self):
-        success, result = up.try_parse_arg(1e+35)
+        success, result = up.try_parse_arg(int(up.max_value))
         self.assertEqual(success, True)
 
     def test_parsing_float_neg(self):
@@ -84,11 +84,11 @@ class TestParsingMethods(unittest.TestCase):
         self.assertEqual(success, True)
 
     def test_parsing_float_small(self):
-        success, result = up.try_parse_arg(1.0e-35)
+        success, result = up.try_parse_arg(up.min_value)
         self.assertEqual(success, True)
 
     def test_parsing_float_big(self):
-        success, result = up.try_parse_arg(1.0e+35)
+        success, result = up.try_parse_arg(up.max_value)
         self.assertEqual(success, True)
 
 
@@ -101,35 +101,35 @@ class TestComputationMethods(unittest.TestCase):
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_zero_pos(self):
-        result = cus.compute_function(0.0, 1.0e+35)
+        result = cus.compute_function(0.0, up.max_value)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_pos_zero(self):
-        result = cus.compute_function(1.0e+35, 0.0)
+        result = cus.compute_function(up.max_value, 0.0)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_zero_neg(self):
-        result = cus.compute_function(0.0, -1.0e+35)
+        result = cus.compute_function(0.0, -up.max_value)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_nrg_zero(self):
-        result = cus.compute_function(-1.0e+35, 0.0)
+        result = cus.compute_function(-up.max_value, 0.0)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_small(self):
-        result = cus.compute_function(1.0e-35, 1.0e-35)
+        result = cus.compute_function(up.min_value, up.min_value)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_small_big(self):
-        result = cus.compute_function(1.0e-35, 1.0e+35)
+        result = cus.compute_function(up.min_value, up.max_value)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_big_small(self):
-        result = cus.compute_function(1.0e+35, 1.0e-35)
+        result = cus.compute_function(up.max_value, 1.0e-35)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_big(self):
-        result = cus.compute_function(1.0e+35, 1.0e+35)
+        result = cus.compute_function(up.max_value, up.max_value)
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_neg(self):
@@ -158,8 +158,8 @@ class TestComputationMethods(unittest.TestCase):
         self.assertEqual(len(result) > 0, True)
 
     def test_compute_random_big(self):
-        result = cus.compute_function(get_random_float_number(-1.0e35, 1.0e35),
-                                      get_random_float_number(-1.0e35, 1.0e35))
+        result = cus.compute_function(get_random_float_number(-up.max_value, up.max_value),
+                                      get_random_float_number(-up.max_value, up.max_value))
         self.assertEqual(len(result) > 0, True)
 
 

@@ -1,12 +1,21 @@
 import sys
+max_value = 1.0e+24
+min_value = 1.0e-24
 
 
 # check candidate for correctness
 def try_parse_arg(candidate):
     try:
         result = float(candidate)
+
+        if abs(result) > max_value:
+            print("Value too big\n")
+            return False, 0.0
+
         return True, result
+
     except ValueError:
+        print("Value incorrect\n")
         return False, 0.0
 
 

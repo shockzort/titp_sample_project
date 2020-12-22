@@ -30,8 +30,8 @@ max_iterations = 10000
 min_step = 0.00001
 
 numeric_output_format = "{:0.5f}"
-row_output_format = "{: <12} {: <15} {: <30}"
-row_output_format_v2 = "{: ^12} {: ^15} {: ^30}"
+row_output_format = "{: <15} {: <35} {: <15}"
+row_output_format_v2 = "{: ^15} {: ^35} {: ^15}"
 result_file_name = "result_table_log"
 
 print_in_place = True
