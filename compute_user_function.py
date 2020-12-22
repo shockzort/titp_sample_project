@@ -30,8 +30,8 @@ max_iterations = 10000
 min_step = 0.00001
 
 numeric_output_format = "{:0.5f}"
-row_output_format = "{: <12} {: <12} {: <30}"
-row_output_format_v2 = "{: ^10} {: ^10} {: ^30}"
+row_output_format = "{: <12} {: <15} {: <30}"
+row_output_format_v2 = "{: ^12} {: ^15} {: ^30}"
 result_file_name = "result_table_log"
 
 print_in_place = True
@@ -101,7 +101,8 @@ def check_data_for_sanity(start, end, step):
 
     # check for too much iterations and prompt user
     if iterations > max_iterations:
-        prompt_text = "Cycle iterations exceed " + str(max_iterations) + ". Are you sure you want to proceed? [Y/n] "
+        prompt_text = "Cycle iterations exceed " + str(max_iterations) + " and equals " \
+                      + "{:0.0f}".format(iterations) + ". Are you sure you want to proceed? [Y/n] "
 
         if not up.prompt_user_agreement(prompt_text):
             log_file.write('\nUser requested exit. Exiting...')
@@ -169,3 +170,5 @@ if __name__ == '__main__':
             print(row_output_format.format(*row))
 
     log_file.close()
+
+    input("Execution complete. Press any key to exit")
